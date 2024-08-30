@@ -2,9 +2,25 @@
 
 [Our GitHub](https://github.com/nathanjzhao/interactive-mujoco)
 
-To view the demo, please visit the website [here](https://nathanzhao.cc/interactive-mujoco/).
-
 Stompy Live allows for users to interact directly with our URDF models in a MuJoCo simulation within the browser, with the ability to add peturbations, conduct IK on end effectors, and play/pause the simulation at certain frames. Beyond this, we are exporting our models trained from [MinPPO](./minppo.mdx) to Tensorflow.js to allow for real-time inference and playback of the trained models.
+
+
+import { Bleed } from 'nextra-theme-docs'
+ 
+<Bleed>
+  <iframe
+    src="https://www.youtube.com/embed/4AR8HE7Iuf0"
+    width="100%"
+    height="500px"
+    title="MinPPO Demo"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
+</Bleed>
+
+To view interact with the simulation, please visit the website [here](https://nathanzhao.cc/interactive-mujoco/).
+
 
 Longterm, this would be useful to test the robustness and generalizability of our models, and will also help us to understand the limitations of our current models as we can directly peturb our model in simulation.
 

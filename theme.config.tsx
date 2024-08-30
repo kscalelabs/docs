@@ -21,9 +21,6 @@ const config: DocsThemeConfig = {
       titleTemplate: '%s – K-Scale Labs'
     };
   },
-  components: {
-    WorkInProgress: WorkInProgress
-  },
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {
