@@ -1,6 +1,12 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
+const WorkInProgress = () => (
+  <div className="wip-notice">
+    This page is a work in progress.
+  </div>
+);
+
 const config: DocsThemeConfig = {
   logo: <span>K-Scale Labs Docs</span>,
   project: {
@@ -39,8 +45,6 @@ const config: DocsThemeConfig = {
     autoCollapse: true, // Automatically collapse inactive folders
     defaultMenuCollapseLevel: 1, // Collapse all folders by default
   },
-
-  docsRepositoryBase: "https://github.com/kscalelabs/docs/tree/master",
   footer: {
     text: "K-Scale Labs Documentation",
   },
