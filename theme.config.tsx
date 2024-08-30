@@ -41,7 +41,9 @@ const config: DocsThemeConfig = {
         )
       }
       return <>{title}</>
-    }
+    },
+    autoCollapse: true, // Automatically collapse inactive folders
+    defaultMenuCollapseLevel: 1, // Collapse all folders by default
   },
   footer: {
     text: (
