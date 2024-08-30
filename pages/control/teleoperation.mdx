@@ -1,22 +1,70 @@
 # Teleoperation
 
-import { Callout } from 'nextra/components'
-
-<Callout type="warning" emoji="⚠️">
-We're working hard on building the documentation. Please [sign up here for K-Scale updates](https://forms.gle/xkba4WWGD5Pmayj96) and check back later for our progress.
-</Callout>
-
+Or, how to control a robot remotely in real-time. At K-Scale Labs, we've created a system for bi-manual remote robotic teleoperation.
 
 import { Bleed } from 'nextra-theme-docs'
 
 <Bleed>
   <iframe
-    src="https://www.youtube.com/embed/k-9W41lVWFU"
+    src="https://www.youtube.com/embed/tIkKE_aTgEk"
     width="100%"
     height="500px"
-    title="MinPPO Demo"
+    title="Stompy Mini Teleop Demo"
     frameBorder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowFullScreen
   />
 </Bleed>
+
+import { Callout } from 'nextra/components'
+
+## Key Features
+
+Our bi-manual remote robotic teleoperation system includes:
+
+- VR and browser visualization
+- Bi-manual hand gesture control
+- Camera streaming (mono + stereo)
+- Inverse kinematics
+- Support for Meta Quest Pro HMD and NVIDIA® Jetson AGX Orin™ Developer Kit
+- `.urdf` robot model integration
+- end effector control
+- Real-world robot testing
+- Trajectory recording and playback
+
+## System Components
+
+### Hardware
+- **Stompy/Stompy Mini**: Humanoid with two manipulator arms
+- **VR Headset**: Meta Quest Pro HMD for hand tracking and visualization
+- **Compute Unit**: NVIDIA® Jetson Orin Nano 8GB Developer Kit for processing
+
+### Software
+- **Visualization**: Vuer for real-time robot state visualization
+- **Inverse Kinematics**: PyBullet for calculating robot arm positions
+- **Networking**: ngrok for secure tunneling
+
+## How It Works
+
+1. The operator wears a VR headset (Meta Quest Pro) which tracks their hand movements.
+2. These movements are translated into control signals for the robot's arms.
+3. The robot's camera feed is streamed back to the operator's headset, providing visual feedback.
+4. Inverse kinematics calculations ensure the robot's movements match the operator's intentions.
+5. The system supports both real-time control and the ability to record and playback trajectories.
+
+## Code
+
+For more information, check out our [Github repo](https://github.com/kscalelabs/teleop/)
+
+## Future Developments
+
+Our team is actively working on improving the system, with plans to:
+
+- Implement 6DOF end effector control
+- Enhance the stability and precision of hand tracking
+- Expand compatibility with different robot models
+- Improve latency in long-distance operations
+
+<Callout type="warning" emoji="⚠️">
+This documentation is a work in progress. For the latest updates and more detailed information, please [sign up for K-Scale updates](https://forms.gle/xkba4WWGD5Pmayj96) and check our [GitHub repository](https://github.com/kscalelabs/teleop).
+</Callout>
