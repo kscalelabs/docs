@@ -1,12 +1,6 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
-const WorkInProgress = () => (
-  <div className="wip-notice">
-    This page is a work in progress.
-  </div>
-);
-
 const config: DocsThemeConfig = {
   logo: <span>K-Scale Labs</span>,
   project: {
@@ -15,10 +9,10 @@ const config: DocsThemeConfig = {
   chat: {
     link: "https://discord.gg/kscale",
   },
-  docsRepositoryBase: "https://github.com/kscalelabs/docs",
+  docsRepositoryBase: "https://github.com/\]kscalelabs/docs",
   useNextSeoProps() {
     return {
-      titleTemplate: '%s – K-Scale Labs'
+      titleTemplate: '%s - K-Scale Labs'
     };
   },
   sidebar: {
