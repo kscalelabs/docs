@@ -1,3 +1,11 @@
+import { Bleed } from 'nextra-theme-docs'
+import { Callout } from 'nextra/components'
+
+<Callout type="warning" emoji="⚠️">
+This documentation is under construction and incomplete. Please [sign up here for K-Scale updates](https://forms.gle/xkba4WWGD5Pmayj96) and check back later for our progress.
+</Callout>
+
+
 # Stompy in MuJoCo Web Assembly
 
 [Our GitHub](https://github.com/nathanjzhao/interactive-mujoco)
@@ -5,8 +13,6 @@
 Stompy Live allows for users to interact directly with our URDF models in a MuJoCo simulation within the browser, with the ability to add peturbations, conduct IK on end effectors, and play/pause the simulation at certain frames. Beyond this, we are exporting our models trained from [MinPPO](./minppo.mdx) to Tensorflow.js to allow for real-time inference and playback of the trained models.
 
 
-import { Bleed } from 'nextra-theme-docs'
- 
 <Bleed>
   <iframe
     src="https://www.youtube.com/embed/4AR8HE7Iuf0"
@@ -23,7 +29,3 @@ To view interact with the simulation, please visit the website [here](https://na
 
 
 Longterm, this would be useful to test the robustness and generalizability of our models, and will also help us to understand the limitations of our current models as we can directly peturb our model in simulation.
-
-## Future Work
-
-Currently, the model only works for the default humanoid XML, but we are working on expanding this to other models. Additionally, training utilizing Soft Actor-Critic (SAC) should allow for more robust and stable locomotion for off-domain tasks.

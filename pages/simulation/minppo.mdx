@@ -1,15 +1,22 @@
+import { Bleed } from 'nextra-theme-docs'
+
+import { Callout } from 'nextra/components'
+
+<Callout type="warning" emoji="⚠️">
+This documentation is under construction and incomplete. Please [sign up here for K-Scale updates](https://forms.gle/xkba4WWGD5Pmayj96) and check back later for our progress.
+</Callout>
+
+
 # Minimal PPO Implementation
 
-[Our GitHub](https://github.com/kscalelabs/minppo)
+[GitHub](https://github.com/kscalelabs/minppo)
 
 A minimal implementation of Proximal Policy Optimization (PPO) utilizing JAX in just three files. Users can import their own custom Mujoco environemnts, define their rewards, and train their own agents with ease.
 
 With this pipeline, we can train agents to perform basic tasks with complete understanding of the underlying training loop, rewards, and physics. Compared to Isaac Gym, this pipeline is much more easier to understand, lightweight, and therefore hackable for research settings.
 
-Here's a video with some basic walking/standing with a humanoid robot.
+Here's a video with some basic walking/standing with a humanoid robot:
 
-import { Bleed } from 'nextra-theme-docs'
- 
 <Bleed>
   <iframe
     src="https://www.youtube.com/embed/Y-mD7Cp9KSs"
@@ -21,42 +28,3 @@ import { Bleed } from 'nextra-theme-docs'
     allowFullScreen
   />
 </Bleed>
-
-## Things we learned
-
-### PPO
-
-PPO from scratch is very finnicky to implement. There are many extra implementations that improve training stability (some notable ones discuessed in this [blog](https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/)), physics simulators are often numerically unstable, and iteration times can be long simply due to the necessity of collecting many data samples.
-
-To address this, we:
-- Had to add many reset conditions to the environment to stop the simulation before there were any nans
-- Kept close track of simulator optimization settings (e.g. which solver to use, the number of iterations, integration type)
-- Used the JAX library to speed up the training loop by vectorizing our environments
-
-Some things we discovered:
-- Observation/reward normalizng didn't work, as it resulted in difficulties
-- Many Github repositories that implement PPO aren't very reliable! Many simply show rising rewards without showing a demonstration of the video. Additionally, many rely on prepackaged simulators which do much of the heavy lifting.
-- A differentiable reward function is very important. Make staying at the original starting position a majority of the reward, and add additional rewards for more complex behaviors. 
-
-An example of a the reward function for maintaining the original position:
-
-```python
-original_pos_reward = jnp.exp(
-    -exp_coef * jnp.linalg.norm(qpos0_diff)
-) - subtraction_factor * jnp.clip(jnp.linalg.norm(qpos0_diff), 0, max_diff_norm)
-```
-
-### JAX
-
-Although very useful, JAX is very dense! Nested JAX functions result in very difficult debugging as `jax.debug.print()` and `jax.debug.breakpoint()` don't seem to work. However, `vmap`, `jit`, `scan`, and `tree.map` are enough to make up for these difficulties, especially for tasks as linear algebra-requiring as physics simulation.
-
-
-## Future Work
-
-Updates are happening frequently, so please check back soon! Some ideas we are looking into:
-- [ ] Support for our `kscale` CLI (meaning a fully integrated training pipeline!)
-- [ ] Implementing curriculum learning
-- [ ] Adding Soft Actor-Critic (SAC) model training
-- [ ] Policies for more complex humanoid models
-
-> Written by Nathan Zhao
