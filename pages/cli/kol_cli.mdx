@@ -7,7 +7,7 @@ In a single CLI, we support functions such as mesh simplification, mesh merging,
 ## Installation
 
 ```bash
-pip install kol
+pip install 'kscale-onshape-library[all]'
 ```
 
 ## Usage
@@ -29,21 +29,17 @@ Available subcommands:
 To download a model from Onshape and apply post-processing:
 
 ```bash
-kol run --document-url <onshape-document-url> --output-dir <output-directory>
+kol run <onshape-document-url> <output-directory>
 ```
 
-Options:
-- `--document-url`: URL of the Onshape document (required)
-- `--output-dir`: Directory to save output files (required)
-- `--debug`: Enable debug logging
-- [Add other relevant options from ConverterConfig]
+To see additional configuration options, consult the config file [here](https://github.com/kscalelabs/onshape/blob/master/kol/onshape/config.py).
 
 ### Download Only
 
 To only download a model from Onshape without post-processing:
 
 ```bash
-kol download <document_url> --output-dir <output_directory> [options]
+kol download <document-url> <output-directory>
 ```
 
 Options are similar to the `run` subcommand.
@@ -53,23 +49,15 @@ Options are similar to the `run` subcommand.
 To apply post-processing to an existing URDF file:
 
 ```bash
-kol postprocess <urdf-path> [options]
+kol postprocess <urdf-path>
 ```
-
-Options:
-- `--urdf-path`: Path to the URDF file to process (required)
-- `--merge-fixed-joints`: Merge fixed joints (default: True)
-- `--simplify-meshes`: Simplify meshes (default: True)
-- `--voxel-size`: Voxel size for mesh simplification (default: 0.01)
-- `--convex-collision-meshes`: Generate convex collision meshes (default: True)
-- `--add-mjcf`: Add MJCF (MuJoCo XML) files (default: True)
 
 ### PyBullet Simulation
 
 To run a PyBullet simulation with the processed URDF:
 
 ```bash
-kol pybullet <urdf_path> [options]
+kol pybullet <urdf-path> [options]
 ```
 
 Options:
@@ -87,13 +75,13 @@ Options:
 1. Download and post-process an Onshape model:
 
 ```bash
-kol run https://cad.onshape.com/documents/... --output-dir ./output
+kol run https://cad.onshape.com/documents/... ./robot
 ```
 
 2. Post-process an existing URDF:
 
 ```bash
-kol postprocess ./path/to/model.urdf --voxel-size 0.005
+kol postprocess ./path/to/model.urdf voxel_size=0.005
 ```
 
 3. Run PyBullet simulation:

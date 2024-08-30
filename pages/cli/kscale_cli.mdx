@@ -2,9 +2,15 @@
 
 The `kscale` CLI is what we use to interact with the [K-Scale store](https://kscale.store/). This will allow for users to download and upload URDF files completely through our CLI or through our website, with support for auto-fetching the latest version of URDF and mesh files from continually updating Onshape documents.
 
+## Installation
+
+```bash
+pip install kscale
+```
+
 ## Usage
 
-```
+```bash
 kscale <subcommand> [options]
 ```
 
@@ -17,51 +23,48 @@ Where `<subcommand>` is either `urdf` or `pybullet`.
 The `urdf` subcommand allows you to manage URDF (Unified Robot Description Format) files in the K-Scale store.
 
 Usage:
-```
-kscale urdf <command> <listing_id> [options]
+
+```bash
+kscale urdf <command> <artifact_id> [options]
 ```
 
 Available commands:
 
 - `download`: Download a URDF artifact from the K-Scale store.
 - `info`: Display information about a URDF artifact.
-- `upload`: Upload a URDF artifact to the K-Scale store.
 - `remove-local`: Remove locally cached URDF files.
 
 #### Examples:
 
 1. Download a URDF:
-   ```
-   kscale urdf download <listing_id>
+   ```bash
+   kscale urdf download <artifact_id>
    ```
 
 2. Get URDF information:
-   ```
-   kscale urdf info <listing_id>
-   ```
-
-3. Upload a URDF:
-   ```
-   kscale urdf upload <listing_id> <folder_path>
+   ```bash
+   kscale urdf info <artifact_id>
    ```
 
 4. Remove local URDF cache:
+   ```bash
+   kscale urdf remove-local <artifact_id>
+   kscale urdf remove-local all
    ```
-   kscale urdf remove-local <listing_id>
-   ```
-   To remove all local caches, use `all` as the listing_id.
 
 ### 2. PyBullet
 
 The `pybullet` subcommand allows interaction with PyBullet functionalities. The specific commands and options for this subcommand are not provided in the given code snippet.
 
 Usage:
-```
+
+```bash
 kscale pybullet [options]
 ```
 
 For detailed information on the available commands and options for the `pybullet` subcommand, please refer to the `pybullet.py` file or run:
-```
+
+```bash
 kscale pybullet --help
 ```
 

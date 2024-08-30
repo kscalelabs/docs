@@ -1,17 +1,13 @@
 {
   "index": "Introduction",
-  "hackathon": "Hackathon",
-  "grants": "Grants",
 
-  "separator1": {
-    "type": "separator"
-  },
-
-  "cli": "CLI",
   "build_guide": "Stompy Mini Build Guide",
   "control": "Control",
   "simulation": "Simulation",
+  "cli": "CLI",
   "operating_systems": "Operating Systems",
+  "hackathon": "Robotics Hackathon",
+  "grants": "Humanoid Grants",
 
   "about": {
     "title": "About",
