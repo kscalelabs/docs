@@ -82,6 +82,24 @@ python sim/play.py --task stompymini --sim_device cpu
 
 See [this doc](https://docs.google.com/document/d/1YZzBqIXO7oq7vIKu-BZr5ssNsi3nKtxpRPnfSnTXojA/edit?usp=sharing) for more beginner tips.
 
+### Sim2Sim Evaluation
+
+You have to create a xml for your robot and then:
+
+1. export paths
+``` bash
+export PYTHONPATH="$(dirname $(pwd)):$PYTHONPATH"
+export MODEL_DIR="sim/resources"
+```
+
+2. run sim/sim2sim.py. Examples:
+```bash
+python sim/play.py --task mini_ppo --sim_device cpu
+python sim/sim2sim.py --load_model examples/standing_pro.pt --embodiment stompypro
+python sim/sim2sim.py --load_model examples/standing_micro.pt --embodiment stompymicro
+````
+
+
 ### Adding a new robot
 
 Creating a new embodiment is quite straightforward. The best way is to copy an existing robot and modify it.
