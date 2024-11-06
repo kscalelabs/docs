@@ -33,7 +33,7 @@ Here is an example of a robot converted using the `kol` CLI, with the input OnSh
 To reproduce the above example, you can run the following command:
 
 ```bash
-kol run https://cad.onshape.com/documents/3037473d78845106e95befb1/w/e3a76b21fff5430d0e9ecfb5/e/1d74e2fed25abed64482828a robot
+kol run https://cad.onshape.com/documents/3037473d78845106e95befb1/w/e3a76b21fff5430d0e9ecfb5/e/1d74e2fed25abed64482828a --output-dir robot
 ```
 
 ## Installation
@@ -65,7 +65,7 @@ Available subcommands:
 To download a model from Onshape and apply post-processing:
 
 ```bash
-kol run <onshape-document-url> <output-directory>
+kol run <onshape-document-url> (--output-dir <output-directory>)
 ```
 
 To see additional configuration options, consult the config file [here](https://github.com/kscalelabs/onshape/blob/master/kol/onshape/config.py).
@@ -75,7 +75,7 @@ To see additional configuration options, consult the config file [here](https://
 To only download a model from Onshape without post-processing:
 
 ```bash
-kol download <document-url> <output-directory>
+kol download <document-url> (--output-dir <output-directory>)
 ```
 
 Options are similar to the `run` subcommand.
