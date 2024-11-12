@@ -124,6 +124,20 @@ We set up the logic so that your new robot should start to walk with basic confi
 3. If the robots tends to jump, use only one limb you will have to adapt the overall rewards schema to enforce proper behavior.
 4. If the setup is correct, you should see positive results after first 200-300 epochs. However, the robust policy will requires 2000-3000 epochs.
 
+## Performance Analysis
+
+Further analysis can be done on the IsaacGym simulation outputs after doing the initial training.
+
+You will be prompted to make an account with Weights and Biases [WandB](https://wandb.ai/) when first performing `train.py`. Basic statistics on the ML training process will be provided online afterwards.
+
+For information on the kinematics and controls of the model, it is possible to generate an [HDF5](https://en.wikipedia.org/wiki/Hierarchical_Data_Format) dataset when running `play.py`. This currently includes:
+* x, y, and yaw commands
+* Joint positiions and velocities
+* Joint 'actions', relating to the input torque
+* Among others; see [sim/sim/play.py](https://github.com/kscalelabs/sim/blob/master/sim/play.py) for the exact outputs.
+
+To save this dataset, specify the argument `play.py (...) -log_h5`. This will save the HDF5 binary to your current working directory. _Note that HDF5 is a binary format, so you will likely need an outside tool, such as [h5dump](https://manpages.debian.org/jessie/hdf5-tools/h5dump.1) (included in Debian) or [h5py](https://www.h5py.org/) to interface with the files._
+
 ## Common Issues
 
 After cloning Isaac Gym, sometimes the bindings mysteriously disappear.
