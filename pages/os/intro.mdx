@@ -25,6 +25,34 @@ The K-Scale Operating System (OS) combines the hardware, software and firmware t
   />
 </Cards>
 
+If you need to develop with KOS on your robot, clone the repository and follow the directions on the README.
+
+Use protoc 3 (releases [here](https://github.com/protocolbuffers/protobuf/releases))
+
+Here's an example script for downloading and installing protoc 3 on Jetsons:
+
+```
+# Create a temporary directory
+mkdir -p /tmp/protoc
+cd /tmp/protoc
+
+# Download the zip file
+wget https://github.com/protocolbuffers/protobuf/releases/download/v29.0/protoc-29.0-linux-aarch_64.zip
+
+# Unzip the contents
+unzip protoc-29.0-linux-aarch_64.zip
+
+# Copy the protoc binary to a directory in your PATH
+sudo cp bin/protoc /usr/local/bin/
+
+# Copy the protobuf include files
+sudo cp -r include/* /usr/local/include/
+
+# Clean up
+cd ..
+rm -rf /tmp/protoc
+```
+
 Here is a high-level overview of the K-Scale OS architecture.
 
 <Image
