@@ -1,6 +1,6 @@
 import { Callout } from "nextra/components";
 import Image from 'next/image'
-import speaker_and_mic_wiring from './speaker_and_mic_wiring.png'
+import speaker_and_mic_wiring from './pics/speaker_and_mic_wiring.png'
 
 # Speaker
 
@@ -13,7 +13,7 @@ import speaker_and_mic_wiring from './speaker_and_mic_wiring.png'
 At the moment, we are using the this speaker from Digikey ([1](https://www.digikey.com/short/5t82t2h9))
 It can be wired up to the Jetson Orin as such:
 
-<Image src={speaker_and_mic_wiring} alt="Speaker and Mic Wiring" width={500} 
+<Image src={speaker_and_mic_wiring} alt="Speaker and Mic Wiring" width={500}
 height={312} style={{ maxWidth: '100%', height: 'auto' }}/>
 
 Here is an example of code to play a wav file on the speaker:
@@ -28,7 +28,7 @@ sound, sr = sf.read("test.wav") #sr is the sampling rate. sound is a numpy array
 sd.play(audio, sr, blocking=True)
 ```
 
-The default device that `sounddevice` use is most often the right one. Even if 
+The default device that `sounddevice` use is most often the right one. Even if
 two speakers are used, they will be both plugged into one amp. If additional speakers
 or mics are plugged in or if default selection is incorrect, you can list the
 available devices using `sd.query_devices()` and select one using `sd.default.device = ...`
@@ -37,19 +37,19 @@ available devices using `sd.query_devices()` and select one using `sd.default.de
 
 This is the path sound takes on the linux system.
 
-1. **Sound Server**: Most basically, orchestrates device driver to work with 
+1. **Sound Server**: Most basically, orchestrates device driver to work with
 mulitplexing. Examples include PulseAudio, Pipewire, JACK.
-2. **Driver**: The Advanced LInux Sound Architecture (ALSA) drives the digital 
+2. **Driver**: The Advanced LInux Sound Architecture (ALSA) drives the digital
 to analog conversion and writes the bytes to the output.
 3. Sound Card acts as the Digital to Analog Converter (**DAC**)
 Controlled by the driver. May have additional hardware here such as amps and pre-amps.
 4. Speaker converts electrical signal to sound.
 
-Our implementation uses `soundfile` and `sounddevice`, which are libraries built to 
-manipulate audio files. Their functionalities for interacting with the sound card and 
+Our implementation uses `soundfile` and `sounddevice`, which are libraries built to
+manipulate audio files. Their functionalities for interacting with the sound card and
 getting processed data is through PortAudio, an abstraction layer atop of ALSA.
 These can be set up on a fresh Jetson using `sudo apt-get install libportaudio2`
-and `pip install soundfile sounddevice`. ALSA is built into the kernel on the Jetson 
+and `pip install soundfile sounddevice`. ALSA is built into the kernel on the Jetson
 and does not need to be installed.
 
 PortAudio lives here [github](https://github.com/PortAudio/portaudiob).
@@ -57,19 +57,19 @@ ALSA lives here [github](https://github.com/alsa-project/alsa-lib).
 
 ## Other Terms
 
-- **Sampling Rate** = how many times per second information is captured. 44.1 khz 
+- **Sampling Rate** = how many times per second information is captured. 44.1 khz
 is common for audio, 48 khz for video, and higher specification audio have higher sampling rates such as 96 khz.
-- **Multiplexing** = the process of interleaving multiple signals (eg. Spotify 
+- **Multiplexing** = the process of interleaving multiple signals (eg. Spotify
 and Youtube) into a single signal at the same time. May require resampling if sampling rates are different.
 
-## Set up 
+## Set up
 
 Flash the jetson with Nvidia default image
-https://docs.nvidia.com/sdk-manager/download-run-sdkm/index.html 
+https://docs.nvidia.com/sdk-manager/download-run-sdkm/index.html
 1. Download Jetson SDK manager, must be Ubuntu 20.0 system
 2. For Orin, flash by shorting GND and FC REC, while plugged in power jack and connect to type C. For AGX just connect to USB C (must be the one next to the pins)
 3. Jetpack 6.0. Follow the steps. On step 2, check everything
-4. The downloading and installation can take ~1 hour. 
+4. The downloading and installation can take ~1 hour.
 
 
 (download miniconda)
@@ -87,7 +87,7 @@ git branch -r
 git checkout -b audio
 ```
 
-download dependencies 
+download dependencies
 ```shell
 conda create —name func_conda python=3.8.19
 conda activate func_conda
@@ -95,5 +95,5 @@ pip install numpy sounddevice soundfile
 sudo apt-get install libportaudio2
 ```
 
-then run! 
-Note that the automatic sd.default.device is the right one. Comment out that line when running, unless running into issues. 
+then run!
+Note that the automatic sd.default.device is the right one. Comment out that line when running, unless running into issues.
