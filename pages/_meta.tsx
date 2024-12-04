@@ -16,6 +16,7 @@ export default {
     title: "Hardware",
   },
   hw: "Getting Started",
+  gpr: "General-Purpose Robot",
   build_guide: "Build Guide",
   components: "Components",
   "-- Community": {
