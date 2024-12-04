@@ -1,0 +1,39 @@
+import Image from 'next/image'
+import { Cards } from 'nextra/components'
+import { FaGithub } from 'react-icons/fa'
+import numbering from './pics/numbering.png'
+import types from './pics/types.png'
+
+# Motors
+
+## Motor Tech Specs
+
+Our general-purpose robot uses the Robstride series of actuators.
+
+| Actuator | Torque | Voltage | Encoders |
+| --- | --- | --- | --- |
+| [Robstride 00](https://robstride.com/products/robStride00) | 14 Nm | 48 V | Dual-encoder |
+| [Robstride 01](https://robstride.com/products/robStride01) | 17 Nm | 36 V | Dual-encoder |
+| [Robstride 02](https://robstride.com/products/robStride02) | 17 Nm | 48 V | Single-encoder |
+| [Robstride 03](https://robstride.com/products/robStride03) | 60 Nm | 48 V | Dual-encoder |
+| [Robstride 04](https://robstride.com/products/robStride04) | 120 Nm | 48 V | Dual-encoder |
+
+We use the following motor types for each degree of freedom:
+
+<Image
+  alt="Motor types"
+  src={types}
+  priority
+  style={{ maxWidth: '100%', height: 'auto', marginTop: '2rem'  }}
+/>
+
+## Motor ID Layout
+
+We use the following numbering scheme for the motors in our robot:
+
+<Image
+  alt="Motor ID Layout"
+  src={numbering}
+  priority
+  style={{ maxWidth: '100%', height: 'auto', marginTop: '2rem'  }}
+/>
