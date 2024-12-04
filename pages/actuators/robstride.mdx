@@ -39,6 +39,17 @@ Make sure you have satisfied the following requirements:
 - **Python Version**: This package works with Python 3.11 and above.
 - **Rust**: You should ensure that Rust is installed on your system.
 
+### SocketCAN
+
+If controlling Robstride motors through socketcan, run the following to set-up the interface (with interfaces enumerating as can[x])
+
+```
+ip link set can0 down
+ip link set can0 type can bitrate 1000000
+ip link set can0 txqueuelen 1000
+ip link set can0 up
+```
+
 ### CH341 Driver
 
 Note that there are some additional steps needed before the Robstride USB controller will work on Linux:
