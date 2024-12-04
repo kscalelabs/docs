@@ -1,6 +1,9 @@
-import { Callout } from 'nextra/components'
+import { Cards } from 'nextra/components'
+import { FaRust, FaGithub, FaDiscord } from 'react-icons/fa'
 
 # IMU
+
+## What is an IMU?
 
 IMU stands for Inertial Measurement Unit. It is a device that measures the orientation and motion of a robot. Specifically, typical IMUs have three sensors:
 
@@ -8,6 +11,60 @@ IMU stands for Inertial Measurement Unit. It is a device that measures the orien
 - **Gyroscope**: This measures angular velocity, or the rate of rotation around an axis. This is done by measuring the Coriolis force, which is proportional to the object's rotation.
 - **Magnetometer**: This measures the orientation of the device relative to the Earth's magnetic field. This is used to determine the device's heading.
 
-<Callout type="warning" emoji="⚠️">
-This documentation is under construction and incomplete. We are in the process of choosing an IMU that works well with our robots.
-</Callout>
+## Reading from the IMU
+
+K-Scale maintains Python and Rust packages for interacting with IMUs.
+
+```bash
+pip install kscale-imu  # Install the Python package
+cargo install imu  # Install the Rust crate
+```
+
+<Cards>
+  <Cards.Card
+    icon={<FaGithub />}
+    title="Code"
+    href="https://github.com/kscalelabs/imu"
+    description="Github project page"
+  />
+  <Cards.Card
+    icon={<FaRust />}
+    title="Rust"
+    href="https://crates.io/crates/imu"
+    description="Pure-Rust implementation"
+  />
+</Cards>
+
+## Getting Started
+
+### Hexmove IMU
+
+To see the original documentation, see [this page](https://docs.hexmove.cn/books/public-hexmove-docs/chapter/xstd-communication-interface).
+
+To use the Hexmove IMU, you'll first need to set up the CAN interface with a baud rate of 500000. On Linux, you can do this with:
+
+```bash
+sudo ip link set can0 up type can bitrate 500000
+```
+
+It's important to note that Hexmove IMUs have model IDs as well as CAN IDs
+
+#### Example usage
+
+```python
+from imu import HexmoveImuReader
+
+# Initialize the IMU reader for the 'can0' interface and imu with CAN ID 1 and model 1
+imu_reader = HexmoveImuReader("can0", 1, 1)
+
+while True:
+    # Get the current IMU data
+    data = imu_reader.get_data()
+    print(
+        f"Angular Position: X={data.x_angle}°, Y={data.y_angle}°, Z={data.z_angle}° | "
+        f"Angular Velocity: X={data.x_velocity}°/s, Y={data.y_velocity}°/s, Z={data.z_velocity}°/s"
+    )
+
+    # Sleep for a short duration to avoid spamming the console
+    time.sleep(0.1)
+```

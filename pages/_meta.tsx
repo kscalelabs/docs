@@ -7,7 +7,6 @@ export default {
   pkg: "API",
   os: "Operating System",
   actuators: "Actuators",
-  sensors: "Sensors",
   models: "Models",
   simulation: "Simulation",
   teleop: "Teleoperation",
