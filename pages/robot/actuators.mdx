@@ -33,9 +33,21 @@ We use the following actuator types for each degree of freedom:
 
 We use the following numbering scheme for the actuators in our robot:
 
+The numbering scheme follows a logical top-down, left-to-right pattern that makes it easy to identify and locate actuators:
+
+- **11-19**: Left arm (11-16), starting from shoulder to hand
+- **21-29**: Right arm (21-26), mirroring the left arm
+- **31-39**: Left leg (31-35), from hip to ankle
+- **41-49**: Right leg (41-45), mirroring the left leg
+
+This systematic approach helps technicians and programmers quickly identify actuator locations during maintenance and programming. The tens digit indicates the limb segment, while the ones digit represents the specific joint within that segment.
+
+By allocating 9 IDs for each limb, this scheme provides flexibility to accommodate different robotic embodiments. This allows for easy adaptation and scalability, ensuring that the numbering system can be consistently applied across various robot designs and configurations.
+
 <Image
   alt="Actuator ID Layout"
   src={numbering}
   priority
   style={{ maxWidth: '100%', height: 'auto', marginTop: '2rem'  }}
 />
+
