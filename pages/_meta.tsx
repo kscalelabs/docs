@@ -17,8 +17,7 @@ export default {
   },
   hw: "Getting Started",
   robot: "Robot",
-  build_guide: "Build Guide",
-  components: "Components",
+  build: "Build Guide",
   "-- Community": {
     type: "separator",
     title: "Community",
