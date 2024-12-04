@@ -1,5 +1,6 @@
 import { Cards } from 'nextra/components'
 import { FaRust, FaGithub, FaDiscord } from 'react-icons/fa'
+import robstride_direction_reference from "./pics/robstride_direction_reference.png";
 
 # Robstride Actuator
 
@@ -131,3 +132,14 @@ except KeyboardInterrupt:
     time.sleep(0.1)
     raise
 ```
+
+## Assorted Notes
+
+Robstride actuators move in a positive direction when going clockwise looking at the flat face of the motor. That is, `+90 deg` is 90 deg clockwise and `-90 deg` is 90 deg counterclockwise
+
+<Image
+  alt="Robstride Clockwise Direction"
+  src={robstride_direction_reference}
+  priority
+  style={{ maxWidth: "100%", height: "auto", marginTop: "2rem" }}
+/>
