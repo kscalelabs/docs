@@ -3,7 +3,7 @@ import { FaGithub } from 'react-icons/fa'
 
 # Isaac Gym
 
-A library for simulating Stompy in Isaac Gym.
+A library for simulating humanoids in Isaac Gym.
 
 <Cards>
   <Cards.Card
@@ -14,12 +14,12 @@ A library for simulating Stompy in Isaac Gym.
   />
 </Cards>
 
-This library is built on top of the Isaac Gym library and Humanoid-gym and provides a simple interface for running experiments with Stompy. We have defined the following tasks:
+This library is built on top of the Isaac Gym library and Humanoid-gym and provides a simple interface for running experiments with GPR. We have defined the following tasks:
 
 - Getting up
 - Walking
 
-We currently support Stompy Mini, XBot, Unitree G1 and H1 with more humanoids to come.
+We currently support GPR, Zeroth, XBot, Unitree G1 and H1 with more humanoids to come.
 
 The walking task works reliably with the upper body fixed. The getting up task is still an open challenge!
 
@@ -80,7 +80,7 @@ See [this doc](https://docs.google.com/document/d/1YZzBqIXO7oq7vIKu-BZr5ssNsi3nK
 
 Creating a new embodiment is quite straightforward. The best way is to copy an existing robot and modify it.
 
-The best starting point would be [stompymini](https://github.com/kscalelabs/sim/tree/master/sim/resources/gpr).
+The best starting point would be [GPR](https://github.com/kscalelabs/sim/tree/master/sim/resources/gpr).
 
 1. Create a folder with a new robot [here](https://github.com/kscalelabs/sim/tree/master/sim/resources).
 2. Add `joint.py` file setting up basic properties and joint configuration - see an [example](https://github.com/kscalelabs/sim/blob/master/sim/resources/gpr/joints.py).
@@ -103,8 +103,8 @@ python sim/train.py --env-id NEW_HUMANOID --num-envs 4
 ## Making it stand
 
 1. The best way to start is to make your new robot stand. In this case you want to comment out the rewards that are responsible for making the robot walk.
-2. If the robot flies away, inspect your joint limits. During training, we introduce a lot of noise to the default joint positions as well as masses. You might need either adapt the limits or the [noise level](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/envs/humanoids/stompy_config.py#L213).
-3. Isaac Sim often hits velocities nans when some joints are hitting their limits - you can change the [engine parameters](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/envs/humanoids/stompy_config.py#L108) to fix this issue.
+2. If the robot flies away, inspect your joint limits. During training, we introduce a lot of noise to the default joint positions as well as masses. You might need either adapt the limits or the noise level.
+3. Isaac Sim often hits velocities nans when some joints are hitting their limits - you can change the engine parameters to fix this issue.
 4. The revolute joints cannot have 0 velocity in the URDF definition - otherwise, engine will go nans as well.
 5. Observe the reward for orientation and default joint position. The model should just farm these two rewards.
 6. If the robot still struggles at keeping the standing pose, you can also change the urdf definition using the [script](https://github.com/kscalelabs/sim/blob/master/sim/scripts/create_fixed_torso.py) to fix the upper body or change joint limits.
@@ -162,9 +162,9 @@ sudo apt-get vulkan1
    - Only revolute and fastened joints
    - Set weights or material
    - Add joint limits in Onshape
-2. Remove Base to Body Fixed Joint and the Base link. The K-Scale Onshape to URDF converter includes these but they were removed in the Stompy Mini URDF.
+2. Remove Base to Body Fixed Joint and the Base link. The K-Scale Onshape to URDF converter includes these but they were removed in the GPR URDF.
 3. Flying Robot (walking then flying away like there is a strong gust)
-   - Check effort and velocity in limits. For small servos around effort="24" velocity="30", For large humanoids like stompy mini, effort="80" and velocity="5"
+   - Check effort and velocity in limits. For small servos around effort="24" velocity="30", For large humanoids like GPR, effort="80" and velocity="5"
    - Check `def stiffness` and `def damping`. For stiffness servos should be ~20 for smaller robots using servos, ~150 for larger humanoids. For damping, should be ~0.5 for servo robots and ~10 for larger humanoids using actuators.
 
 ### Expected Behavior
