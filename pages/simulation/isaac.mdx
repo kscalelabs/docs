@@ -54,30 +54,24 @@ conda activate kscale-sim-library
 make install-third-party-external
 ```
 
-## Running Stompy experiments
+## Running GPR experiments
 
-1. Pre-define model directory:
-
-```bash
-export MODEL_DIR=sim/resources/stompymini
-```
-
-2. Run a small training with visualization with the following command:
+1. Run a small training with visualization with the following command:
 
 ```bash
-python sim/train.py --task=stompymini --num_envs=4
+python sim/train.py --task=gpr --num_envs=4
 ```
 
 or full training in the headless mode:
 
 ```bash
-python sim/train.py --task=stompymini --num_envs=4096 --headless
+python sim/train.py --task=gpr --num_envs=4096 --headless
 ```
 
 3. Run evaluation with the following command:
 
 ```bash
-python sim/play.py --task stompymini --sim_device cpu
+python sim/play.py --task gpr --sim_device cpu
 ```
 
 See [this doc](https://docs.google.com/document/d/1YZzBqIXO7oq7vIKu-BZr5ssNsi3nKtxpRPnfSnTXojA/edit?usp=sharing) for more beginner tips.
@@ -86,12 +80,12 @@ See [this doc](https://docs.google.com/document/d/1YZzBqIXO7oq7vIKu-BZr5ssNsi3nK
 
 Creating a new embodiment is quite straightforward. The best way is to copy an existing robot and modify it.
 
-The best starting point would be [stompymini](https://github.com/kscalelabs/sim/tree/master/sim/resources/stompymini).
+The best starting point would be [stompymini](https://github.com/kscalelabs/sim/tree/master/sim/resources/gpr).
 
 1. Create a folder with a new robot [here](https://github.com/kscalelabs/sim/tree/master/sim/resources).
-2. Add `joint.py` file setting up basic properties and joint configuration - see an [example](https://github.com/kscalelabs/sim/blob/master/sim/resources/stompymini/joints.py).
+2. Add `joint.py` file setting up basic properties and joint configuration - see an [example](https://github.com/kscalelabs/sim/blob/master/sim/resources/gpr/joints.py).
    - Make sure to update the p_gains (def stiffness) and d_gains (def damping), such that the joints match the URDF joint names.
-3. Update [height](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/resources/stompymini/joints.py#L102) and default rotation of your humanoid.
+3. Update height and default rotation of your humanoid.
 4. Add a new embodiment configuration and environment [here](https://github.com/kscalelabs/sim/tree/master/sim/envs/humanoids).
 5. Add a new embodiment to the [registry](https://github.com/kscalelabs/sim/blob/master/sim/envs/__init__.py).
 To run things export your default path:
@@ -108,7 +102,7 @@ python sim/train.py --env-id NEW_HUMANOID --num-envs 4
 
 ## Making it stand
 
-1. The best way to start is to make your new robot stand. In this case you want to comment out the rewards that are responsible for making the robot walk. See an example of a [reward config](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/envs/humanoids/stompymini_config.py#L163).
+1. The best way to start is to make your new robot stand. In this case you want to comment out the rewards that are responsible for making the robot walk.
 2. If the robot flies away, inspect your joint limits. During training, we introduce a lot of noise to the default joint positions as well as masses. You might need either adapt the limits or the [noise level](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/envs/humanoids/stompy_config.py#L213).
 3. Isaac Sim often hits velocities nans when some joints are hitting their limits - you can change the [engine parameters](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/envs/humanoids/stompy_config.py#L108) to fix this issue.
 4. The revolute joints cannot have 0 velocity in the URDF definition - otherwise, engine will go nans as well.
@@ -119,8 +113,8 @@ python sim/train.py --env-id NEW_HUMANOID --num-envs 4
 
 We set up the logic so that your new robot should start to walk with basic configuration after some modifications.
 
-1. To get things going it's best to start from the good standing pose, with knees slightly bent. See an example [Stompy's pose](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/resources/stompymini/joints.py#L113).
-2. The [gait reward](https://github.com/kscalelabs/sim/blob/aa97ddfddcaadcac64d4f83d986548cc7fc451a6/sim/envs/humanoids/stompy_config.py#L146) is the most crucial single reward. You have to adapt the hyperparameters to your robot design to get it to work.
+1. To get things going it's best to start from the good standing pose, with knees slightly bent.
+2. The gait reward is the most crucial single reward. You have to adapt the hyperparameters to your robot design to get it to work.
 3. If the robots tends to jump, use only one limb you will have to adapt the overall rewards schema to enforce proper behavior.
 4. If the setup is correct, you should see positive results after first 200-300 epochs. However, the robust policy will requires 2000-3000 epochs.
 
