@@ -1,0 +1,22 @@
+import Image from "next/image";
+import arch from "./pics/klang-arch.svg";
+
+# End-to-End Model
+
+Our robots are optimized for running end-to-end models, letting us use less hardware than we would otherwise need to include, thereby improving the cost and reliability of the robot.
+
+The end-to-end model represents all of the robot's sensors and actuators, as well as the robot's intended action, as tensors, which are then passed to a neural network. The neural network is trained to predict the actions that will achieve the desired outcome.
+
+## Neural Interpreter
+
+We encode user commands as latent vector representations, which are then fed to the neural network to produce the desired actions. We represent the sequence of actions to run using a domain-specific language (DSL) we developed called Klang. You can think of the neural network that runs the Klang program as an interpreter for the DSL, somewhat like chained prompting common in other applications like image generation and language modeling. Below is a diagram showing the architecture of this neural interpreter.
+
+<Image alt="Klang Neural Interpreter" src={arch} style={{ width: "100%", marginTop: "1em" }} />
+
+## Technical Reports
+
+We trained and released an example architecture for our end-to-end vision-language-action model, which is optimized for running efficiently on edge devices. Here are some links with more information:
+
+- [Blog Post](https://blog.kscale.dev/efficient-vision-language-action-models-82b4607de39d)
+- [Technical Report](https://kscale-public.s3.amazonaws.com/evla_18092024/report.pdf)
+- [Code](https://github.com/kscalelabs/evla)

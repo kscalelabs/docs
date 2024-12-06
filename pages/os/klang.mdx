@@ -62,43 +62,4 @@ Klang is built into K-Scale OS, and is designed to be a simple and flexible way 
 " wave both arms
 ```
 
-This converts to the following tree:
-
-```
-wave both arms {
-  wave right arm {
-    wave joint 1 twice {
-      move joint 1 on the right arm to 90
-      move joint 1 on the right arm to 0
-    }
-    wave joint 2 twice {
-      move joint 2 on the right arm to 90
-      move joint 2 on the right arm to 0
-    }
-    wave joint 3 twice {
-      move joint 3 on the right arm to 90
-      move joint 3 on the right arm to 0
-    }
-  }
-  wave left arm {
-    wave joint 1 twice {
-      move joint 1 on the left arm to 90
-      move joint 1 on the left arm to 0
-    }
-    wave joint 2 twice {
-      move joint 2 on the left arm to 90
-      move joint 2 on the left arm to 0
-    }
-    wave joint 3 twice {
-      move joint 3 on the left arm to 90
-      move joint 3 on the left arm to 0
-    }
-  }
-}
-```
-
-## Neural Interpreter
-
-Below is a diagram showing the architecture of the Klang neural interpreter.
-
-<Image alt="Klang Neural Interpreter" src={arch} style={{ width: "100%", marginTop: "1em" }} />
+The neural interpreter is responsible for executing these commands.
