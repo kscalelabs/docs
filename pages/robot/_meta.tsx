@@ -7,4 +7,5 @@ export default {
   microphone: "Microphone",
   imu: "IMU",
   screen: "Screen",
+  battery: "Battery",
 };
