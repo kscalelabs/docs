@@ -1,3 +1,5 @@
+import { Cards } from 'nextra/components'
+import { FaCog } from 'react-icons/fa'
 import Image from 'next/image'
 import sensors from './pics/sensors.png'
 
@@ -15,14 +17,27 @@ Here is the bill of materials for the robot:
 | [Robstride 02](https://robstride.com/products/robStride02) | [Robstride](https://robstride.com/) | 8 | 17 Nm actuator |
 | [Robstride 03](https://robstride.com/products/robStride03) | [Robstride](https://robstride.com/) | 8 | 60 Nm actuator |
 | [Robstride 04](https://robstride.com/products/robStride04) | [Robstride](https://robstride.com/) | 4 | 120 Nm actuator |
-| [3MP SG3S-ISX031C-GMSL2F](https://www.sensing-world.com/en/pd.jsp?id=23) | [Sensing](https://www.sensing-world.com/) | 1 | 3MP, 196 degree HFOV camera |
 | [J501 Carrier Board](https://www.seeedstudio.com/reServer-Industrial-J501-GMSL-extension-board-p-5949.html) | [Seeed Studio](https://www.seeedstudio.com/) | 1 | Jetson Orin 32GB Carrier Board |
-| [Hexmove IMU](https://www.hexmove.cn/en/index_en.html) | [Hexmove](https://www.hexmove.cn/) | 1 | Inertial Measurement Unit |
 | [ReSpeaker Microphone Array](https://www.seeedstudio.com/ReSpeaker-Mic-Array-v2-0.html) | [Seeed Studio](https://www.seeedstudio.com/) | 1 | Microphone |
 | [7 inch 1024x600 LCD](https://www.seeedstudio.com/7-inch-1024x600-60Hz-IPS-Capacitive-Touch-Screen-with-speakers-p-5842.html) | [Seeed Studio](https://www.seeedstudio.com/) | 1 | LCD |
+| [3MP SG3S-ISX031C-GMSL2F](https://www.sensing-world.com/en/pd.jsp?id=23) | [Sensing](https://www.sensing-world.com/) | 1 | 3MP, 196 degree HFOV camera |
+| [Hexmove IMU](https://www.hexmove.cn/en/index_en.html) | [Hexmove](https://www.hexmove.cn/) | 1 | Inertial Measurement Unit |
 | [Speaker](https://www.digikey.com/en/products/detail/challenge-electronics/CS45-04D20-28-1/20115409) | [Digikey](https://www.digikey.com/) | 1 | Speaker |
+| Battery | | 1 | |
+| Wiring | | | |
+
+## Manufacturing
 
 The robot is manufactured with CNC'd aluminum, anodized black to make it look cooler. We additionally include plastic casing to protect the electronics.
+
+<Cards>
+  <Cards.Card
+    icon={<FaCog />}
+    title="Onshape"
+    href="https://cad.onshape.com/documents/bc3a557e2f92bdcea4099f0d/w/09713ac603d461fc1dff6b5d"
+    description="CAD model for the full robot"
+  />
+</Cards>
 
 ## Sensor Layout
 
