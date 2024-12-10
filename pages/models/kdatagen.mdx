@@ -16,4 +16,38 @@ pip install kdatagen
   />
 </Cards>
 
-`kdatagen` is K-Scale's package for generating data for training models.
+`kdatagen` is K-Scale's package for generating data for training models. You can use this package to generate simulation data from given neural network robot policy. We recommend using the kscale [sim](https://github.com/kscalelabs/sim) library to train and the kscale [kinfer](https://github.com/kscalelabs/kinfer) library to export your models to onxx.
+
+## Installation
+
+First make a conda environment with the dependencies installed:
+
+```bash
+conda create --name kdatagen python=3.11
+conda activate kdatagen
+# cd to repo root
+cd kdatagen
+make install-dev
+```
+
+## Usage
+
+Here's an example command to run a simulation:
+
+```bash
+# cd to repo root
+python kdatagen/sim/walking.py --embodiment stompypro --load_model kdatagen/saved_models/kinfer_test.onnx --log_krec --log_h5 --log_out_dir kdatagen/sim/resources --no_render
+```
+
+This will run a simulation using the provided policy and save the data to both KRec and HDF5 formats.
+
+## Working with KRec Files
+
+We provide example scripts that demonstrate how to write to and read from KRec files:
+
+```bash
+python kdatagen/scripts/test_krec_write.py
+python kdatagen/scripts/test_krec_read.py --krec_file kdatagen/sim/resources/stompypro/krec_out/test_krec_
+```
+
+NOTE: If you'd like to simulated create data for your own robot, you'll need an xml file that mujoco can use to define the simulation environment. If you have the urdf file for your robot, you can use kscale's [urdf2mjcf](https://docs.kscale.dev/utils/urdf2mjcf) utility to generate the xml file. By default, kdatagen will use the `/kdatagen/sim/resources/stompypro/robot_fixed.xml` file for stompypro.
