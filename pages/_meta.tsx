@@ -6,7 +6,6 @@ export default {
   },
   os: "Operating System",
   pkg: "Platform",
-  models: "Models",
   simulation: "Simulation",
   teleop: "Teleoperation",
   utils: "Utilities",
