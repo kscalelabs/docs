@@ -54,6 +54,17 @@ conda activate kscale-sim-library
 make install-third-party-external
 ```
 
+Currently, our inference and export package [kinfer](https://pypi.org/project/kinfer/) is not compatible with Python 3.8, so we hack it in by accessing it locally as a submodule.
+
+Consequently, you'll also need to add it to your `PYTHONPATH` like this:
+```
+conda env config vars set PYTHONPATH=third_party/kinfer
+```
+or
+```
+export PYTHONPATH=third_party/kinfer
+```
+
 ## Running GPR experiments
 
 1. Run a small training with visualization with the following command:
