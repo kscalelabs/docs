@@ -37,6 +37,45 @@ cargo install imu  # Install the Rust crate
 
 ## Getting Started
 
+### Hiwonder IMU
+
+The Hiwonder 10A (10 axis) IMU's documentation can be found at [this](https://www.hiwonder.com/products/imu-module?variant=40375875305559) link (scroll to bottom FAQ's GDrive link). 
+
+To set it up make sure you have installed [this](https://github.com/WCHSoftGroup/ch341ser_linux) CH341 USB driver. It should show up as `/dev/ttyUSB0` on Linux, and the defualt baud rate is 9600.
+
+HiWonder IMU Protocol
+- Data Length: 11 bytes
+- Header/start/SOF Byte: 0x55
+- Command Byte: 0x51 accel data, 0x52 Gyroscope data, 0x53 angle data
+- Data: 8 bytes
+- CheckSum Byte: 1 byte (only lowest 8 bits of summation of all bytes in packet is used (CheckSum & 0xff))
+
+#### Example usage
+
+```python
+import time
+from imu import HiwonderImu
+
+# Create IMU instance
+imu = HiwonderImu("/dev/ttyUSB0", 9600)
+
+try:
+    while True:
+        if data := imu.read_data():
+            acc, gyro, angle = data
+            print("\033[2J\033[H")  # Clear screen
+            print(f"Acceleration (m/s²): {acc}")
+            print(f"Gyroscope (deg/s):  {gyro}")
+            print(f"Angle (degrees):     {angle}")
+            time.sleep(0.1)  # Add small delay to make output readable
+except KeyboardInterrupt:
+    print("\nExiting...")
+
+```
+
+
+
+
 ### Hexmove IMU
 
 To see the original documentation, see [this page](https://docs.hexmove.cn/books/public-hexmove-docs/chapter/xstd-communication-interface) and [here](https://docs.hexmove.cn/books/public-hexmove-docs/page/imu-sensor). A more detailed datasheet will be released soon.
