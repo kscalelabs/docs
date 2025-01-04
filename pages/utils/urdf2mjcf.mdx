@@ -56,6 +56,33 @@ To see all the options, use:
 urdf2mjcf -h
 ```
 
+As of `urdf2mjcf==0.0.4`, the options are:
+```bash
+usage: urdf2mjcf [-h] [--no-collision-mesh] [--output OUTPUT] [--copy-meshes]
+                 [--camera-distance CAMERA_DISTANCE]
+                 [--camera-height-offset CAMERA_HEIGHT_OFFSET]
+                 [--no-frc-limit] [--default-position DEFAULT_POSITION]
+                 urdf_path
+
+Convert a URDF file to an MJCF file.
+
+positional arguments:
+  urdf_path             The path to the URDF file.
+
+options:
+  -h, --help            show this help message and exit
+  --no-collision-mesh   Do not include collision meshes.
+  --output OUTPUT       The path to the output MJCF file.
+  --copy-meshes         Copy mesh files to the output MJCF directory.
+  --camera-distance CAMERA_DISTANCE
+                        Camera distance from the robot.
+  --camera-height-offset CAMERA_HEIGHT_OFFSET
+                        Camera height offset.
+  --no-frc-limit        Do not include force limit for the actuators.
+  --default-position DEFAULT_POSITION
+                        Default position for the robot.
+```
+
 ### Python
 
 To run the conversion script from Python, use:
