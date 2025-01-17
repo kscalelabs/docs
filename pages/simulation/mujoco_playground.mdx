@@ -1,0 +1,43 @@
+import { Cards } from 'nextra/components'
+import { FaGithub } from 'react-icons/fa'
+
+# Mujoco Playground
+
+A library for simulating robots from K-Scale Labs in Mujoco/MJX.
+
+<Cards>
+  <Cards.Card
+    icon={<FaGithub />}
+    title="Github"
+    href="https://github.com/kscalelabs/mujoco_playground"
+    description="Contribute to our open-source projects"
+  />
+</Cards>
+
+This library is built on top of the Mujoco Playground library.
+
+## Getting Started
+1. Clone this repository:
+
+```bash
+git clone https://github.com/kscalelabs/mujoco_playground.git
+cd mujoco_playground
+```
+
+2. Follow standard installation instructions for Mujoco Playground[here](https://github.com/google-deepmind/mujoco_playground/)
+
+## Running ZBot experiments
+
+3. Run a small training with visualization with the following command:
+
+```bash
+python run_local_training.py
+```
+or through notebook:
+
+```bash
+ipython run_local_training.ipynb
+```
+
+## Evaluation
+You can inspect the training results through the output.mp4 file.
