@@ -1,0 +1,55 @@
+import { Cards } from 'nextra/components'
+import { FaGithub } from 'react-icons/fa'
+
+# Genesis Playground
+
+A library for simulating robots from K-Scale Labs in Genesis.
+
+<Cards>
+  <Cards.Card
+    icon={<FaGithub />}
+    title="Github"
+    href="https://github.com/kscalelabs/genesis_playground"
+    description="Contribute to our open-source projects"
+  />
+</Cards>
+
+This library is built on top of the Genesis library.
+
+## Getting Started
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/kscalelabs/genesis_playground.git
+cd genesis_playground
+```
+
+2. If you work on a Mac, you can install the package with the following command:
+
+```bash
+micromamba create -n genesis python=3.12
+micromamba activate genesis
+pip install genesis-world
+git clone https://github.com/leggedrobotics/rsl_rl
+cd rsl_rl && git checkout v1.0.2 && pip install -e .
+pip install tensorboard
+```
+
+If you work on a Linux machine, you can install the package with the following command:
+
+```bash
+conda create -n genesis python=3.12
+conda activate genesis
+pip install genesis-world
+git clone https://github.com/leggedrobotics/rsl_rl
+cd rsl_rl && git checkout v1.0.2 && pip install -e .
+pip install tensorboard
+```
+
+3. You can run the training and evaluation for Zeroth Bot with the following commands:
+
+```bash
+python zbot/zbot_train.py -e zbot-walking --num_envs 4096
+python zbot/zbot_eval.py -e zbot-walking --ckpt 100
+```
