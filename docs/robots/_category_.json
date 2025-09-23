@@ -1,0 +1,8 @@
+{
+  "label": "Robots",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Hardware documentation for K-Scale robots."
+  }
+}
