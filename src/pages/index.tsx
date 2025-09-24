@@ -10,5 +10,11 @@ export default function Home(): ReactElement {
     history.replace('/intro');
   }, [history]);
 
-  return <div>Redirecting...</div>;
+  return (
+    <div style={{
+      padding: '20px',
+    }}>
+      Redirecting...
+    </div>
+  );
 }
