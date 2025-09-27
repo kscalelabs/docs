@@ -13,6 +13,10 @@ This guide will help you get your K-Bot up and running quickly if you were given
 - K-Bot robot hardware
 - Network access to the robot's WiFi
 
+
+Please first unpack the robot and connect all the wires according to the video below.
+<iframe src="https://drive.google.com/file/d/12G-pBif-XgMTdHjyD91p4ErO5RwP87N9/preview" width="640" height="480" allow="autoplay" allowfullscreen></iframe>
+
 ## Step 1: Connect to the Robot
 
 1. **Connect to WiFi**: Join the WiFi network that should be `kd-X` where `X` ranges from 1 to 10.
@@ -27,16 +31,17 @@ This guide will help you get your K-Bot up and running quickly if you were given
 
 ## Step 2: Set Up CAN Interfaces
 
-1. **Activate the robstride environment**:
+1. **If you have robot `kd-4` or `kd-1`, you will need to activate the robstride environment and then run the set can script**:
 
    ```bash
    conda activate robstride
+   ./kscale/robstride/set_can.sh
    ```
 
-2. **Set up CAN interfaces**:
+2. **If you have robot `kd-9`, you will just need to setup the CAN interfaces.**:
 
    ```bash
-   ./kscale/robstride/set_can.sh
+   ./robstride/set_can.sh
    ```
 
 3. **Scan for motors on all CAN interfaces**:
@@ -91,7 +96,7 @@ However, each robot is different so you will have to modify this command to make
 
 ## Step 5: Run the Standing Policy
 
-1. **Activate the klog environment**:
+1. **If you have robot `kd-4` or `kd-1`, you will need to activate the klog environment**:
 
    ```bash
    conda activate klog

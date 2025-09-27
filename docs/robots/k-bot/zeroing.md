@@ -32,7 +32,7 @@ Next you should look at the parameter table of the actuator that you replaced an
 | 13 (L Shoulder Yaw) | -1.672 |
 | 14 (L Elbow Pitch) | 0 |
 | 15 (L Wrist) | -1.378 |
-| 21 (R Shoulder Pitch) | -3.491 |
+| 21 (R Shoulder Pitch) | -2.802 |
 | 22 (R Shoulder Roll) | 1.658 |
 | 23 (R Shoulder Yaw) | 1.672 |
 | 24 (R Elbow Pitch) | 0 |
