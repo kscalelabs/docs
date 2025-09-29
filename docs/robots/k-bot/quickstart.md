@@ -13,9 +13,9 @@ This guide will help you get your K-Bot up and running quickly if you were given
 - K-Bot robot hardware
 - Network access to the robot's WiFi
 
-
 Please first unpack the robot and connect all the wires according to the video below.
-<iframe src="https://drive.google.com/file/d/12G-pBif-XgMTdHjyD91p4ErO5RwP87N9/preview" width="640" height="480" allow="autoplay" allowfullscreen></iframe>
+
+<iframe width="315" height="560" src="https://www.youtube.com/embed/A8VWp-WIV5A" title="K-Bot hardware setup" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Step 1: Connect to the Robot
 
@@ -55,28 +55,29 @@ Please first unpack the robot and connect all the wires according to the video b
 ## Step 3: Identify Motor Layout
 
 Look for which motors are on which CAN interfaces. You should see the robstride scan output something like:
-   ```bash
-   Scanning can0 (IDs 10-50)...
-      Found 5 actuators: [11, 12, 13, 14, 15]
-   Scanning can1 (IDs 10-50)...
-      Found 5 actuators: [31, 32, 33, 34, 35]
-   Scanning can2 (IDs 10-50)...
-      Found 5 actuators: [21, 22, 23, 24, 25]
-   Scanning can3 (IDs 10-50)...
-      Found 5 actuators: [41, 42, 43, 44, 45]
-   Scanning can4 (IDs 10-50)...
-      No actuators found
-   Scanning can5 (IDs 10-50)...
-      No actuators found
-   Scanning can6 (IDs 10-50)...
-      No actuators found
 
-   Scan complete: Found 20 total actuators across 4 interfaces
-   ```
+```bash
+Scanning can0 (IDs 10-50)...
+   Found 5 actuators: [11, 12, 13, 14, 15]
+Scanning can1 (IDs 10-50)...
+   Found 5 actuators: [31, 32, 33, 34, 35]
+Scanning can2 (IDs 10-50)...
+   Found 5 actuators: [21, 22, 23, 24, 25]
+Scanning can3 (IDs 10-50)...
+   Found 5 actuators: [41, 42, 43, 44, 45]
+Scanning can4 (IDs 10-50)...
+   No actuators found
+Scanning can5 (IDs 10-50)...
+   No actuators found
+Scanning can6 (IDs 10-50)...
+   No actuators found
+
+Scan complete: Found 20 total actuators across 4 interfaces
+```
 
 If 20 total actuators are not found, make sure you have run the `set_can.sh` above. If that does not resolve the issue, look at which actuators are missing using the [Motor ID Mapping](./motor-id-mapping.md) page and then you will need to take off the front large plate and verify that the red JST CAN connections on that limb are secure. We have seen cases where the connector in the elbow was pulled out and only 3 actuators were visible on that limb. In other cases, a connector that had frayed could cause the entire limb to be not visible. If that occurs, you will need to follow the troubleshooting or maintenance steps to identify which actuators are functioning.
 
- > :warning: **WARNING**: Do not pull on the JST CAN connectors too hard from the actuators or they may rip off of the shoulder actuators and result in a very time-consuming replacement process.
+> :warning: **WARNING**: Do not pull on the JST CAN connectors too hard from the actuators or they may rip off of the shoulder actuators and result in a very time-consuming replacement process.
 
 ## Step 4: Configure CAN Interface Order
 

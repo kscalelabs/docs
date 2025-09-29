@@ -25,44 +25,42 @@ Then you should download the current version of the actuator firmware from the g
 
 Next you should look at the parameter table of the actuator that you replaced and update the zero offset parameter with the value from the table below.
 
-| Actuator id    | Offset |
-| -- | ------ |
+| Actuator id           | Offset |
+| --------------------- | ------ |
 | 11 (L Shoulder Pitch) | -3.491 |
-| 12 (L Shoulder Roll) | -1.658 |
-| 13 (L Shoulder Yaw) | -1.672 |
-| 14 (L Elbow Pitch) | 0 |
-| 15 (L Wrist) | -1.378 |
+| 12 (L Shoulder Roll)  | -1.658 |
+| 13 (L Shoulder Yaw)   | -1.672 |
+| 14 (L Elbow Pitch)    | 0      |
+| 15 (L Wrist)          | -1.378 |
 | 21 (R Shoulder Pitch) | -2.802 |
-| 22 (R Shoulder Roll) | 1.658 |
-| 23 (R Shoulder Yaw) | 1.672 |
-| 24 (R Elbow Pitch) | 0 |
-| 25 (R Wrist) | 1.378 |
-| 31 (L Hip Pitch) | -2.216 |
-| 32 (L Hip Roll) | -2.268 |
-| 33 (L Hip Yaw) | -1.571 |
-| 34 (L Knee Pitch) | 0 |
-| 35 (L Ankle Pitch) | -0.262 |
-| 41 (R Hip Pitch) | 2.216 |
-| 42 (R Hip Roll) | 2.269 |
-| 43 (R Hip Yaw) | 1.571 |
-| 44 (R Knee Pitch) | 0 |
-| 45 (R Ankle Pitch) | 0.262 |
+| 22 (R Shoulder Roll)  | 1.658  |
+| 23 (R Shoulder Yaw)   | 1.672  |
+| 24 (R Elbow Pitch)    | 0      |
+| 25 (R Wrist)          | 1.378  |
+| 31 (L Hip Pitch)      | -2.216 |
+| 32 (L Hip Roll)       | -2.268 |
+| 33 (L Hip Yaw)        | -1.571 |
+| 34 (L Knee Pitch)     | 0      |
+| 35 (L Ankle Pitch)    | -0.262 |
+| 41 (R Hip Pitch)      | 2.216  |
+| 42 (R Hip Roll)       | 2.269  |
+| 43 (R Hip Yaw)        | 1.571  |
+| 44 (R Knee Pitch)     | 0      |
+| 45 (R Ankle Pitch)    | 0.262  |
 
 Next you will need to move the robot into the zeroing position as shown in the video below.
 
-
-<iframe src="https://drive.google.com/file/d/1AsbP1YiTBfWeG6uAvVjnfK_GzbOl1XnP/preview" width="640" height="480" allow="autoplay" allowfullscreen></iframe>
-
+<iframe width="315" height="560" src="https://www.youtube.com/embed/uWSWjA6e7fM" title="K-Bot Zeroing Position" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 Finally, while 1 person holds the robot's elbow straight, another person should run the following commands:
 
-    ```bash
-   conda activate robstride
-   robstride -i can0,can1,can2,can3,can4,can5,can6 zero --ids 11,12,13,14,15,21,22,23,24,25,31,32,33,34,35,41,42,43,44,45
-   ```
+```bash
+conda activate robstride
+robstride -i can0,can1,can2,can3,can4,can5,can6 zero --ids 11,12,13,14,15,21,22,23,24,25,31,32,33,34,35,41,42,43,44,45
+```
 
 Finally, you can move the robot manually to near the zero position and check the position of each actuator. If any of them are far from zero, you should re zero them manually using the robstride motor tool.
 
-    ```bash
-   robstride -i can0,can1,can2,can3,can4,can5,can6 state --ids 11,12,13,14,15,21,22,23,24,25,31,32,33,34,35,41,42,43,44,45
-   ```
+```bash
+robstride -i can0,can1,can2,can3,can4,can5,can6 state --ids 11,12,13,14,15,21,22,23,24,25,31,32,33,34,35,41,42,43,44,45
+```

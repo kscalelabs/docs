@@ -6,15 +6,18 @@ sidebar_position: 6
 
 This guide is a quick start for utilizing the walking policy that we have developed.
 
+<iframe width="315" height="560" src="https://www.youtube.com/embed/i03P0VMc9kc" title="K-Bot walking around" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Prerequisites
 
-- Print out this [headless mount](https://drive.google.com/file/d/1PrhU7G5c-PSf1LY0Z4_e-dQ44iBOpmPD/view?usp=sharing) 
+- Print out this [headless mount](https://drive.google.com/file/d/1PrhU7G5c-PSf1LY0Z4_e-dQ44iBOpmPD/view?usp=sharing)
 
 ## Overview
 
 ## Step 1: Follow the quick start instructions up until the standing policy
 
 1. **Start the keyboard control in another terminal of the robot**:
+
    ```bash
    cd kbot_deployment
    python kbot_control/keyboard.py
@@ -34,5 +37,5 @@ This guide is a quick start for utilizing the walking policy that we have develo
 
 ## Step 3: Use the keyboard controls to teleoperate the robot
 
-1. **You must first click on the keyboard control terminal** - The keyboard controls are: arrow keys up and down control the command magnitude. 'w, a, s, and d' control the x and y velocity. 'q and e' control the yaw velocity. 
+1. **You must first click on the keyboard control terminal** - The keyboard controls are: arrow keys up and down control the command magnitude. 'w, a, s, and d' control the x and y velocity. 'q and e' control the yaw velocity.
 2. :warning: For our policy `eloquent_ride`, you should set the command magnitude to 0.2 and only rotating in place and walking side to side work well. Walking forwards and backwards is still under development. In addition you can test out controlling the arms at the same time with the [joystick16.py](https://github.com/kscalelabs/kbot_deployment/blob/dev-bart/kbot_control/joystick16.py) script.
