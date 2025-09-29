@@ -16,11 +16,13 @@ We currently support 3 main simulation workflows.
 
 ## K-Sim
 
-K-sim is built upon Mujoco's MJX simulator
+[K-Sim](https://github.com/kscalelabs/ksim) is built upon Mujoco's MJX simulator
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/c64FnSvj8kQ" title="K-Bot Simulation Explainer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## IsaacLab
 
-We are currently supporting IsaacSim 5.0
+We are currently supporting IsaacSim 5.0. See our [reference repository](https://github.com/kscalelabs/isaaclab).
 
 ## IsaacGym
 
