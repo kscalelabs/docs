@@ -15,7 +15,7 @@ This guide will help you get your K-Bot up and running quickly if you were given
 
 Please first unpack the robot and connect all the wires according to the video below.
 
-<iframe width="315" height="560" src="https://www.youtube.com/embed/A8VWp-WIV5A" title="K-Bot hardware setup" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="315" height="560" src="https://www.youtube.com/embed/2S3O7En08lQ" title="K-Bot hardware setup" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Step 1: Connect to the Robot
 
