@@ -2,118 +2,141 @@
 sidebar_position: 3
 ---
 
-# Teleop
+# VR Teleoperation
 
-This guide covers teleoperation (remote control) of the K-Bot robot using VR controllers and hand tracking.
+This guide covers teleoperation of the K-Bot using a Meta Quest VR Headset.
 
 ## Prerequisites
 
-- K-Bot robot set up and running (see [Quickstart](./quickstart.md))
-- VR headset (tested with Meta Quest, anything that can create webXR sessions in the browser will work)
-- Computer
-- Network connection to the robot and computer
+- K-Bot (see [Quickstart](./quickstart.md))
+- Meta Quest VR headset
+- Computer with teleop repository cloned from [kbot_vr_teleop](https://github.com/kscalelabs/kbot_vr_teleop)
+
 
 ## Overview
 
-The K-Bot teleop system allows you to control the robot remotely using:
+The K-Bot teleop system uses VR spatial tracking to provide intuitive remote control of the robot.
 
-- **VR Controllers**: Better when using gripper end effectors. Trigger to close grippers and "X" to pause commands.
-- **Hand Tracking**: Better for hand end effectors.
-- **Video Streaming**: Currently only one video is displayed in front of the user, we are working on stereo vision.
+### System Diagram
 
-The VR app switches seamlessly between controller and hand tracking during execution. If both hands are visible, hand-tracking will be used, if one hand + one controller or two controllers are visble, controller tracking will be used. You can not combine methods right now.
+![Teleop System Architecture](./assets/teleop_diagram.png)
 
-## Setup
+**The Robot** runs its main firmware, a GStreamer process with a WebSocket server and a UDP listener that passes commands to the firmware.
 
-### 1. Create Web Server to Serve Web App to Headset
+**The Intermediary Computer** is not strictly necessary, but it allows us to offload the inverse kinematics from the robot. On-board kinematics aren't very smooth since the CPU on the Raspberry Pi is also streaming two feeds using software encoding.
+
+**The VR Headset** provides hand or controller tracking through a browser web app. No installs required.
+
+### Control Methods
+
+**VR Controllers** provide a more comprehensive interface to control the robot. Joysticks can be used to control the lower body, the robot can be paused, and the analog triggers provide precise control over the end effectors (great for grippers).
+
+![VR Controller Layout](./assets/controller_diagram.png)
+
+**Hand Tracking** allows the user to naturally control the robot's individual fingers by tracking each joint in their hand. The rest of the interface is missing, but that is something being actively explored.
+
+### Video Streaming
+
+Currently, only one video feed is displayed in front of the user. We are actively working on implementing stereo vision for enhanced depth perception. For more details on the video streaming implementation, see the [Video Streaming](./video-streaming.md) page.
+
+## How to Run VR Teleop
+
+### 1. Setup Signaling Server
+
+Create a conda environment and install all required dependencies:
+
+```bash
+# Create and activate conda environment
+conda create -n teleop python=3.10
+conda activate teleop
+
+# Navigate to the teleop repository
+cd kbot_vr_teleop
+
+# Install dependencies from requirements.txt
+pip install -r requirements.txt
+
+# Install the package in editable mode
+pip install -e .
+```
+
+The dependencies include:
+- `websockets` - WebSocket server/client communication
+- `jax` & `jaxopt` - Inverse kinematics optimization
+- `numpy` & `scipy` - Array operations and spatial transforms
+- `rerun-sdk` - Visualization and logging (includes viewer)
+- `urdf-parser-py` - Parsing robot URDF files
+- Other utilities
+
+Then run the signaling server:
+
+```bash
+cd src/kscale_vr_teleop
+python signaling.py
+```
+
+The signaling server will:
+- Receive joint data from the headset via WebSocket
+- Perform Inverse Kinematics calculations
+- Forward commands to the robot using UDP
+- Relay WebRTC signaling messages
+- Launch a Rerun window to visualize and log the robot's movement
+
+### 2. Setup Web Server
 
 ```bash
 # Navigate to the teleop frontend
-cd kscale_vr_teleop/frontend
+cd kbot_vr_teleop/frontend
 npm install
 npm run start-https
 ```
 
-The `start-https` command creates an HTTPS proxy server that:
+The `start-https` command creates a webserver and an HTTPS proxy that:
 
 - **Runs on port 8443** (HTTPS server)
 - **Forwards general traffic to port 8012** (React development server)
 - **Forwards `/service2` requests to port 8013** (signaling server for WebRTC and inverse kinematics)
 
-### 2. Run Signaling Server
+### 3. Run Deploy Script and Select Policy
 
 ```bash
-# Navigate to the teleop backend
-cd kscale_vr_teleop/src/kscale_vr_teleop
-conda activate teleop
-python signaling.py
+./firmware/scripts/deploy.sh --gstreamer --command-source udp
+```
+Visit [kbot_vr_teleop](https://github.com/kscalelabs/kbot_vr_teleop) to see which policy to run. Expect policies to be updated.
+
+### 4. Setup Headset
+
+- Navigate to `https://YOUR_COMPUTER_IP:8443` in the Quest browser. You will probably need to click 'Advanced' and 'Continue' since your certificate will not be trusted. There is no way to add trusted certificates to the Quest.
+- Enter the robot's IP address in the web page. This gets sent to the signaling server and tells it how to find the robot.
+- Press **Connect**
+- Press **X** on the left controller to start sending commands.
+
+## Questions
+
+### Why have the signaling server?
+
+First, inverse kinematics don't run fast enough when also running GStreamer on the Raspberry Pi due to the fact that it is using software encoding with high CPU usage. The signaling server allows us to offload those calculations from the robot.
+
+Secondly, a signaling server is required in order for WebRTC video streaming to work reliably in different network environments. Some networks may not allow the robot or headset to accept inbound connection requests, so having a signaling server in the middle allows both sides to open their own outbound connections. In order to simplify the process for demos, the current signaling server opens connections with the robot. To change it to a true signaling server, move the WebSocket server from `gstreamer.py` on the robot to `signaling.py`.
+
+If you are interested in a TURN relay server, visit our GStreamer repo for instructions on how to setup Coturn.
+
+### Why have the HTTPS proxy?
+
+Quest Headsets will not allow unsecured HTTP or WS connections. Not needed for production.
+
+### Does the headset receive anything besides the video?
+
+The web app receives the results of the inverse kinematics in order to update the robot's URDF (this will probably be removed once stereo vision is improved). It also receives the calculated distance between the user's real position and the solution of the IK, allowing the user to monitor how well their movement is being followed.
+
+### Can I run the web server and signaling server on different computers?
+
+Yes, just update the URL in `App.tsx` or create a text input for it:
+
+```javascript
+const [url, setUrl] = useState(`wss://${window.location.hostname}${portString}/service2`)
 ```
 
-- The signaling server will receive joint data from the headset via a wbsocket and forward commands to the robot using UDP.
-- It will also launch a rerun window to visualize and log the robots movement.
+### Which headsets does this work with?
 
-### 3. Sanity Check
-
-Navigate to https://YOUR_COMPUTER_IP:8443 and press the big orange "Connect" button
-
-You should see:
-
-- An orange screen (video is not streaming yet)
-- Grippers that follow your hands. These represent your hands/controller's true position and the target for the inverse kinematics. They will fade between being green and red to represent how close the solution to the kinematics is to the real position.
-- A URF of the KBot's upperbody following your controllers.
-- URDF in rerun on the computer following your controllers.
-
-### 4. Start Video Streaming
-
-```bash
-# Start the GStreamer Pipeline
-source webrtc-pi-env/bin/activate
-cd kscale_vr_teleop
-python gstreamer.py
-```
-
-### 5. Use the correct firmware branch
-
-[Link](https://github.com/kscalelabs/firmware/branches)
-
-With grippers: eric/5dof-with-grippers
-Without grippers: eric/can-imu-emulator
-
-```bash
-# Compile Firwmare
-cargo build --release
-```
-
-Move the output binary, faux-rtos to kbot_deployment
-
-### 6. Initialize IMU Emulator
-
-```bash
-#you may need to run
-sudo apt install socat
-cd FIRMWARE_REPO/scripts/usb
-sudo ./start.sh
-```
-
-### 7. Run Desired Policy in a Different Terminal
-
-```bash
-conda activate klog
-export export IMU_DEV=/tmp/imu_emulator_in
-cd kbot_deployment
-./deploy_from_queue
-#For hands or no end-effector, select confident_hugle.kinfer
-#For grippers, select competent_feistel.kinfer
-```
-
-You will be prompted to press Enter 3 times. The second time will put the arms in a ready position. The third time will start tracking. Be careful, the robot will jump to your hand positions (if everything else is running) so make sure your arms are in an appropriate position. This is an easy way to slam your effectors into the body or table.
-
-## Usage
-
-1. Navigate to https://YOUR_COMPUTER_IP:8443
-2. Enter your robot's IP in the text input
-3. Press the orange "Connect" button
-4. The URDF should be following your controllers. And the video feed should be in front of you.
-5. Get your hands in an appropriate position
-6. Press enter for the 3rd time in the ./deploy_from_queue terminal.
-7. Control the robot!
+Our teleop stack has been used successfully with Quest Pro, Quest 2, and Quest 3.
