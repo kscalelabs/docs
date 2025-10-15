@@ -1,6 +1,15 @@
 ---
-sidebar_position: 5
+sidebar_position: 3
 ---
+
+:::note
+
+The K-Bot hardware and software is still under active development and improvement.
+
+**License**
+The hardware components of this project are licensed under CERN-OHL-S while the software components are licensed under GPL v3, unless otherwise specified. See [LICENSE-HW](https://github.com/kscalelabs/kbot/blob/master/LICENSE-HW) and [LICENSE](https://github.com/kscalelabs/kbot/blob/master/LICENSE), respectively.
+
+:::
 
 # Electrical System
 
