@@ -30,12 +30,13 @@ You can find this [helpful spreadsheet](./assets/KBot_UID_to_Pic.xlsx) that has 
 Here are the actuators we use from [Robstride](https://robstride.com/). The exact location and how they are id'd are in the next page (Motor ID Mapping). 
 
 
-|  | Count | Rated Load | Torque Constant | Peak Load (10 seconds) | Weight | Poles | Gear Ratio |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Robstride RS00 | 2 | 5 Nm | 2.09303607 Nm/A | 14 Nm | 0.31 kg | 28 poles | 10:1 |
-| Robstride RS02 | 6 | 6 Nm | 1.72534055 Nm/A | 17 Nm | 0.38 kg | 28 Poles | 7.75:1 |
-| Robstride RS03 | 8 | 20 Nm | 3.33754401 Nm/A | 60 Nm | 0.88 kg | 42 Poles | 9:1 |
-| Robstride RS04 | 4 | 40 Nm | 2.1 Nm/Arms = 2.1 * sqrt(2) = 2.96984848 | 120 Nm | 1.42 kg | 42 Poles | 9:1 |
+|  | Count | Rated Load | Peak Load (10 seconds) | Weight | Gear Ratio |
+| --- | --- | --- | --- | --- | --- |
+| Robstride RS00 | 2 | 5 Nm | 14 Nm | 0.31 kg | 10:1 |
+| Robstride RS02 | 6 | 6 Nm | 17 Nm | 0.38 kg | 7.75:1 |
+| Robstride RS03 | 8 | 20 Nm | 60 Nm | 0.88 kg | 9:1 |
+| Robstride RS04 | 4 | 40 Nm | 120 Nm | 1.42 kg | 9:1 |
+
 
 ## Manufacturing Tolerances
 
@@ -53,33 +54,31 @@ Lots of thought has been put into how we wire the robot (and it is still the lea
 
 ## Battery
 
-Currently the K-Bot uses a 12 AH NCM battery. Each cell is 4V. There is also a BMS inside which communicates with the power board. You can see the mechanical parts for the battery component for the space available - its 135mm x 180mm x 65mm for the pack and 130mm x 20mm x 35mm for the BMS and plug.
+Currently the K-Bot uses a 12 AH NCM battery. Each cell is 4V. There is also a BMS inside which communicates with the power board. The BMS current protection limit is set at 50A. You can see the mechanical parts for the battery component for the space available - its 135mm x 180mm x 65mm for the pack and 130mm x 20mm x 35mm for the BMS and plug.
 
 
 ## Joint Range
 
-| Joint Name - KD | Min Angle (deg) | Max Angle (deg) | Min Angle (rad) | Max Angle (rad) |
-| --- | --- | --- | --- | --- |
-| dof_left_shoulder_pitch_03 | -60.000 | 200.000 | -1.047 | 3.491 |
-| dof_left_shoulder_roll_03 | -25.000 | 95.000 | -0.436 | 1.658 |
-| dof_left_shoulder_yaw_02 | -95.792 | 95.792 | -1.672 | 1.672 |
-| dof_left_elbow_02 | -142.000 | 0.000 | -2.478 | 0.000 |
-| dof_left_wrist_00 | -79.000 | 79.000 | -1.378 | 1.378 |
-| dof_right_shoulder_pitch_03 | -200.000 | 60.000 | -3.491 | 1.047 |
-| dof_right_shoulder_roll_03 | -95.000 | 25.000 | -1.658 | 0.436 |
-| dof_right_shoulder_yaw_02 | -95.792 | 95.792 | -1.672 | 1.672 |
-| dof_right_elbow_02 | -0.000 | 142.000 | -0.000 | 2.478 |
-| dof_right_wrist_00 | -79.000 | 79.000 | -1.378 | 1.378 |
-| dof_left_hip_pitch_04 | -60.000 | 127.000 | -1.047 | 2.216 |
-| dof_left_hip_roll_03 | -130.000 | 12.000 | -2.268 | 0.209 |
-| dof_left_hip_yaw_03 | -90.000 | 90.000 | -1.571 | 1.571 |
-| dof_left_knee_04 | -0.000 | 155.000 | -0.000 | 2.705 |
-| dof_left_ankle_00 | -15.000 | 65.000 | -0.262 | 1.134 |
-| dof_right_hip_pitch_04 | -127.000 | 60.000 | -2.216 | 1.047 |
-| dof_right_hip_roll_03 | -12.000 | 130.000 | -0.209 | 2.268 |
-| dof_right_hip_yaw_03 | -90.000 | 90.000 | -1.571 | 1.571 |
-| dof_right_knee_04 | -155.000 | 0.000 | -2.705 | 0.000 |
-| dof_right_ankle_00 | -65.000 | 15.000 | -1.134 | 0.262 |
-
-
+| Joint Name - KD | Min Angle (deg) | Max Angle (deg) |
+| --- | --- | --- |
+| dof_left_shoulder_pitch_03 | -60.000 | 200.000 |
+| dof_left_shoulder_roll_03 | -25.000 | 95.000 |
+| dof_left_shoulder_yaw_02 | -95.792 | 95.792 |
+| dof_left_elbow_02 | -142.000 | 0.000 |
+| dof_left_wrist_00 | -79.000 | 79.000 |
+| dof_right_shoulder_pitch_03 | -200.000 | 60.000 |
+| dof_right_shoulder_roll_03 | -95.000 | 25.000 |
+| dof_right_shoulder_yaw_02 | -95.792 | 95.792 |
+| dof_right_elbow_02 | -0.000 | 142.000 |
+| dof_right_wrist_00 | -79.000 | 79.000 |
+| dof_left_hip_pitch_04 | -60.000 | 127.000 |
+| dof_left_hip_roll_03 | -130.000 | 12.000 |
+| dof_left_hip_yaw_03 | -90.000 | 90.000 |
+| dof_left_knee_04 | -0.000 | 155.000 |
+| dof_left_ankle_00 | -15.000 | 65.000 |
+| dof_right_hip_pitch_04 | -127.000 | 60.000 |
+| dof_right_hip_roll_03 | -12.000 | 130.000 |
+| dof_right_hip_yaw_03 | -90.000 | 90.000 |
+| dof_right_knee_04 | -155.000 | 0.000 |
+| dof_right_ankle_00 | -65.000 | 15.000 |
 
