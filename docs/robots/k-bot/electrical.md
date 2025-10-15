@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 ---
+# Electrical System
+
 
 :::note
 
@@ -10,8 +12,6 @@ The K-Bot hardware and software is still under active development and improvemen
 The hardware components of this project are licensed under CERN-OHL-S while the software components are licensed under GPL v3, unless otherwise specified. See [LICENSE-HW](https://github.com/kscalelabs/kbot/blob/master/LICENSE-HW) and [LICENSE](https://github.com/kscalelabs/kbot/blob/master/LICENSE), respectively.
 
 :::
-
-# Electrical System
 
 This guide explains a little bit about how the electrical system is structured.
 
