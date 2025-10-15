@@ -23,7 +23,7 @@ Parts are indicated as follows `KD-E-105X`: KD indicates the version number of t
 
 The fabricated parts are available online at Onshape through our [public release](https://cad.onshape.com/publications/e15cf8edefacbba3009917c0/), or also as a zip file that can be downloaded [here](./assets/KBot_Parts.zip).
 
-You can find this [helpful spreadsheet]((./assets/KBot_UID_to_Pic.xlsx)) that has the picture alongside the part number. There is also a Chinese name for each part which may be useful if you are working with overseas suppliers to get these parts made yourself.
+You can find this [helpful spreadsheet](./assets/KBot_UID_to_Pic.xlsx) that has the picture alongside the part number. There is also a Chinese name for each part which may be useful if you are working with overseas suppliers to get these parts made yourself.
 
 ## Actuators
 
