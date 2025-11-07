@@ -23,7 +23,16 @@ Parts are indicated as follows `KD-E-105X`: KD indicates the version number of t
 
 The fabricated parts are available online at Onshape through our [public release](https://cad.onshape.com/publications/e15cf8edefacbba3009917c0/), or also as a zip file that can be downloaded [here](./assets/KBot_Parts.zip).
 
-You can find this [helpful spreadsheet](./assets/KBot_UID_to_Pic.xlsx) that has the picture alongside the part number. There is also a Chinese name for each part which may be useful if you are working with overseas suppliers to get these parts made yourself.
+If you use Onshape, the file with the feature trees are here:
+- [K-Bot Legs](https://cad.onshape.com/documents/56df9b1704928b974a7d6785/w/5b4e7939b4075909e2f1e83f/e/0f3313ac1d4663a7156d6caf)
+- [K-Bot Torso](https://cad.onshape.com/documents/e67e31c953683019c4393bdc/w/b284b0f5698d77710f656522/e/852af025128c1979f42b0ca0)
+- [K-Bot Arms](https://cad.onshape.com/documents/dc61a03ca9769ab30757c4f4/w/36f75f10f978d5ba193c09ca/e/da97515661ec177734456c1c)
+- [K-Bot Head](https://cad.onshape.com/documents/9e38678113e126dd34263131/w/3f66fe0d46617a4699795e2e/e/bca55e9af9315a31c22f72b3)
+- [K-Bot Upper Torso Mount](https://cad.onshape.com/documents/fb0aa6ee83b37e4a41f5914b/w/83cdcf0f90bc459a98f314ce/e/eddb329de88fd387b338143e)
+- [K-Bot Assy](https://cad.onshape.com/documents/3c96361770f38d5b0d3868f1/w/9470282c10c48cb8491ca2c4/e/fc57abbe4012b0f64cb8d794)
+
+
+You can find this [helpful spreadsheet](./assets/KBot_UID_to_Pic.xlsx) that has the picture alongside the part number. There is also a Chinese name for each part which may be useful if you are working with overseas CNC suppliers to get these parts made yourself.
 
 ## Actuators
 
